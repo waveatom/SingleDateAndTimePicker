@@ -294,9 +294,9 @@ public class SingleDateAndTimePicker extends LinearLayout {
     }
 
     public void setTextSize(int textSize) {
-        for (WheelPicker picker : pickers) {
-            picker.setItemTextSize(textSize);
-        }
+//        for (WheelPicker picker : pickers) {
+//            picker.setItemTextSize(textSize);
+//        }
     }
 
     public void setSelectedTextColor(int selectedTextColor) {

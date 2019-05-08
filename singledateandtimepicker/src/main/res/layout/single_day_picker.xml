@@ -76,9 +76,9 @@
             app:wheel_item_align="center"
             app:wheel_visible_item_count="2"
             app:wheel_item_typeface="@font/ibmplexsans_regular"
-            app:wheel_item_text_size="27dp"
+            app:wheel_item_text_size="20sp"
             app:wheel_selected_item_typeface="@font/ibmplexsans_bold"
-            app:wheel_selected_item_text_size="35dp"
+            app:wheel_selected_item_text_size="30sp"
             app:wheel_selected_item_text_color="@android:color/holo_orange_dark"/>
 
     </LinearLayout>

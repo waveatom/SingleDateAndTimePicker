@@ -173,10 +173,10 @@ public abstract class WheelPicker<V> extends View {
         updateVisibleItemCount();
 
         paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG | Paint.LINEAR_TEXT_FLAG);
-        paint.setTextSize(mItemTextSize);
+        paint.setTextSize(mSelectedItemTextSize);
 
         if (mTypefaceResourceId != 0) {
-            paint.setTypeface(ResourcesCompat.getFont(getContext(),mTypefaceResourceId));
+            paint.setTypeface(ResourcesCompat.getFont(getContext(),mSelectedTypefaceResourceId));
         }
 
         scroller = new Scroller(getContext());
@@ -417,6 +417,7 @@ public abstract class WheelPicker<V> extends View {
             if (mTypefaceResourceId != 0) {
                 paint.setTypeface(ResourcesCompat.getFont(getContext(),mTypefaceResourceId));
             }
+            paint.setTextSize(mItemTextSize);
             paint.setStyle(Paint.Style.FILL);
             int mDrawnItemCenterY = drawnCenterY + (drawnOffsetPos * mItemHeight) +
                     scrollOffsetY % mItemHeight;
@@ -488,6 +489,7 @@ public abstract class WheelPicker<V> extends View {
                 if (mSelectedTypefaceResourceId != 0) {
                     paint.setTypeface(ResourcesCompat.getFont(getContext(),mSelectedTypefaceResourceId));
                 }
+                paint.setTextSize(mSelectedItemTextSize);
                 canvas.save();
                 if (isCurved) canvas.concat(matrixRotate);
                 canvas.clipRect(rectCurrentItem);
