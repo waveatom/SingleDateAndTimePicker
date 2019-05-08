@@ -175,6 +175,7 @@ public abstract class WheelPicker<V> extends View {
         paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG | Paint.LINEAR_TEXT_FLAG);
         paint.setTextSize(mSelectedItemTextSize);
 
+        //setting this here sets the selected value size correctly based on the largest value.
         if (mTypefaceResourceId != 0) {
             paint.setTypeface(ResourcesCompat.getFont(getContext(),mSelectedTypefaceResourceId));
         }
