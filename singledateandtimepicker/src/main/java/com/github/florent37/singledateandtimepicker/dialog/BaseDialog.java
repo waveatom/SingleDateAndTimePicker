@@ -20,7 +20,7 @@ import static com.github.florent37.singledateandtimepicker.widget.SingleDateAndT
 
 public abstract class BaseDialog {
     public static final int DEFAULT_ITEM_COUNT_MODE_CURVED = 7;
-    public static final int DEFAULT_ITEM_COUNT_MODE_NORMAL = 5;
+    public static final int DEFAULT_ITEM_COUNT_MODE_NORMAL = 3;
 
     private boolean isDisplaying;
 

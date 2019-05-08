@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -69,6 +70,7 @@ public abstract class WheelPicker<V> extends View {
     private int mTextMaxWidth, mTextMaxHeight;
     private int mItemTextColor, mSelectedItemTextColor;
     private int mItemTextSize;
+    private int mSelectedItemTextSize;
     private int mIndicatorSize;
     private int mIndicatorColor;
     private int mCurtainColor;
@@ -87,6 +89,8 @@ public abstract class WheelPicker<V> extends View {
     private int lastPointY;
     private int downPointY;
     private int touchSlop = 8;
+    private int mTypefaceResourceId;
+    private int mSelectedTypefaceResourceId;
 
     private boolean hasSameWidth;
     private boolean hasIndicator;
@@ -143,6 +147,7 @@ public abstract class WheelPicker<V> extends View {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WheelPicker);
 
         mItemTextSize = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_item_text_size, getResources().getDimensionPixelSize(R.dimen.WheelItemTextSize));
+        mSelectedItemTextSize = a.getDimensionPixelSize(R.styleable.WheelPicker_wheel_selected_item_text_size, getResources().getDimensionPixelSize(R.dimen.WheelItemTextSize));
         mVisibleItemCount = a.getInt(R.styleable.WheelPicker_wheel_visible_item_count, 7);
         selectedItemPosition = a.getInt(R.styleable.WheelPicker_wheel_selected_item_position, 0);
         hasSameWidth = a.getBoolean(R.styleable.WheelPicker_wheel_same_width, false);
@@ -160,12 +165,19 @@ public abstract class WheelPicker<V> extends View {
         hasAtmospheric = a.getBoolean(R.styleable.WheelPicker_wheel_atmospheric, false);
         isCurved = a.getBoolean(R.styleable.WheelPicker_wheel_curved, false);
         mItemAlign = a.getInt(R.styleable.WheelPicker_wheel_item_align, ALIGN_CENTER);
+        mTypefaceResourceId = a.getResourceId(R.styleable.WheelPicker_wheel_item_typeface, 0);
+        mSelectedTypefaceResourceId = a.getResourceId(R.styleable.WheelPicker_wheel_selected_item_typeface, 0);
+
         a.recycle();
 
         updateVisibleItemCount();
 
         paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG | Paint.LINEAR_TEXT_FLAG);
         paint.setTextSize(mItemTextSize);
+
+        if (mTypefaceResourceId != 0) {
+            paint.setTypeface(ResourcesCompat.getFont(getContext(),mTypefaceResourceId));
+        }
 
         scroller = new Scroller(getContext());
 
@@ -402,6 +414,9 @@ public abstract class WheelPicker<V> extends View {
                 }
             }
             paint.setColor(mItemTextColor);
+            if (mTypefaceResourceId != 0) {
+                paint.setTypeface(ResourcesCompat.getFont(getContext(),mTypefaceResourceId));
+            }
             paint.setStyle(Paint.Style.FILL);
             int mDrawnItemCenterY = drawnCenterY + (drawnOffsetPos * mItemHeight) +
                     scrollOffsetY % mItemHeight;
@@ -461,6 +476,7 @@ public abstract class WheelPicker<V> extends View {
             int drawnCenterY = isCurved ? this.drawnCenterY - distanceToCenter : mDrawnItemCenterY;
 
             // Judges need to draw different color for current item or not
+            // set the code to change the font here.  Need a selected and unselected font
             if (mSelectedItemTextColor != -1) {
                 canvas.save();
                 if (isCurved) canvas.concat(matrixRotate);
@@ -469,6 +485,9 @@ public abstract class WheelPicker<V> extends View {
                 canvas.restore();
 
                 paint.setColor(mSelectedItemTextColor);
+                if (mSelectedTypefaceResourceId != 0) {
+                    paint.setTypeface(ResourcesCompat.getFont(getContext(),mSelectedTypefaceResourceId));
+                }
                 canvas.save();
                 if (isCurved) canvas.concat(matrixRotate);
                 canvas.clipRect(rectCurrentItem);

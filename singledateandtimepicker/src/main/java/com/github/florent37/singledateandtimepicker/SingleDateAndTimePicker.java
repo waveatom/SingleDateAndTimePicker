@@ -37,7 +37,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
     public static final boolean IS_CURVED_DEFAULT = false;
     public static final boolean MUST_BE_ON_FUTUR_DEFAULT = false;
     public static final int DELAY_BEFORE_CHECK_PAST = 200;
-    private static final int VISIBLE_ITEM_COUNT_DEFAULT = 7;
+    private static final int VISIBLE_ITEM_COUNT_DEFAULT = 3;
     private static final int PM_HOUR_ADDITION = 12;
 
     private static final CharSequence FORMAT_24_HOUR = "EEE d MMM H:mm";
@@ -300,15 +300,15 @@ public class SingleDateAndTimePicker extends LinearLayout {
     }
 
     public void setSelectedTextColor(int selectedTextColor) {
-        for (WheelPicker picker : pickers) {
-            picker.setSelectedItemTextColor(selectedTextColor);
-        }
+//        for (WheelPicker picker : pickers) {
+//            picker.setSelectedItemTextColor(selectedTextColor);
+//        }
     }
 
     public void setTextColor(int textColor) {
-        for (WheelPicker picker : pickers) {
-            picker.setItemTextColor(textColor);
-        }
+//        for (WheelPicker picker : pickers) {
+//            picker.setItemTextColor(textColor);
+//        }
     }
 
     public void setSelectorColor(int selectorColor) {
