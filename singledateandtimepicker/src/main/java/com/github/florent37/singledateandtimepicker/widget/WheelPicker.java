@@ -68,6 +68,7 @@ public abstract class WheelPicker<V> extends View {
     private int mVisibleItemCount, mDrawnItemCount;
     private int mHalfDrawnItemCount;
     private int mTextMaxWidth, mTextMaxHeight;
+    private int mNonSelectedTextMaxHeight;
     private int mItemTextColor, mSelectedItemTextColor;
     private int mItemTextSize;
     private int mSelectedItemTextSize;
@@ -224,7 +225,43 @@ public abstract class WheelPicker<V> extends View {
         mHalfDrawnItemCount = mDrawnItemCount / 2;
     }
 
+    private void computeNonSelectedTextSize() {
+        if (mTypefaceResourceId == 0) {
+            return;
+        }
+
+        Typeface foo = paint.getTypeface();
+        float fooInt = paint.getTextSize();
+        System.out.println(this.getClass().getName());
+        System.out.println("*** COMPUTE NON SELECTED TEXT SIZE ***");
+        paint.setTypeface(ResourcesCompat.getFont(getContext(),mTypefaceResourceId));
+        paint.setTextSize(mItemTextSize);
+
+        //mTextMaxWidth = mTextMaxHeight = 0;
+        if (hasSameWidth) {
+            paint.measureText(adapter.getItemText(0));
+        } else if (isPosInRang(textMaxWidthPosition)) {
+            paint.measureText(adapter.getItemText(textMaxWidthPosition));
+        } else if (!TextUtils.isEmpty(maxWidthText)) {
+            paint.measureText(maxWidthText);
+        } else {
+            final int itemCount = adapter.getItemCount();
+            for (int i = 0; i < itemCount; ++i) {
+                String text = adapter.getItemText(i);
+                int width = (int) paint.measureText(text);
+            }
+        }
+        final Paint.FontMetrics metrics = paint.getFontMetrics();
+        mNonSelectedTextMaxHeight = (int) (metrics.bottom - metrics.top);
+        System.out.println("*** NON SEL TEXT HEIGHT: " + mNonSelectedTextMaxHeight);
+        paint.setTypeface(foo);
+        paint.setTextSize(fooInt);
+    }
+
+
+
     private void computeTextSize() {
+        System.out.println("*** COMPUTE TEXT SIZE ***");
         mTextMaxWidth = mTextMaxHeight = 0;
         if (hasSameWidth) {
             mTextMaxWidth = (int) paint.measureText(adapter.getItemText(0));
@@ -242,6 +279,7 @@ public abstract class WheelPicker<V> extends View {
         }
         final Paint.FontMetrics metrics = paint.getFontMetrics();
         mTextMaxHeight = (int) (metrics.bottom - metrics.top);
+        System.out.println("*** TEXT HEIGHT: " + mTextMaxHeight);
     }
 
     private void updateItemTextAlign() {
@@ -483,7 +521,12 @@ public abstract class WheelPicker<V> extends View {
                 canvas.save();
                 if (isCurved) canvas.concat(matrixRotate);
                 canvas.clipRect(rectCurrentItem, Region.Op.DIFFERENCE);
-                canvas.drawText(data, drawnCenterX, drawnCenterY, paint);
+                System.out.println(data);
+                if (mTextMaxHeight > mNonSelectedTextMaxHeight) {
+                    canvas.drawText(data, drawnCenterX, drawnCenterY - ((mTextMaxHeight - mNonSelectedTextMaxHeight) / 4), paint);
+                } else {
+                    canvas.drawText(data, drawnCenterX, drawnCenterY, paint);
+                }
                 canvas.restore();
 
                 paint.setColor(mSelectedItemTextColor);
@@ -744,7 +787,9 @@ public abstract class WheelPicker<V> extends View {
         updateItemTextAlign();
 
         computeTextSize();
-
+        if (mTypefaceResourceId != 0) {
+            computeNonSelectedTextSize();
+        }
         notifyDatasetChanged();
     }
 

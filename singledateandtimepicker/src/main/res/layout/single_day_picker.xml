@@ -54,8 +54,6 @@
             android:id="@+id/hoursPicker"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="20dp"
-            android:layout_gravity="center"
             app:wheel_atmospheric="true"
             app:wheel_item_align="center"
             app:wheel_item_typeface="@font/ibmplexsans_regular"
@@ -64,6 +62,16 @@
             app:wheel_selected_item_text_size="85sp"
             app:wheel_selected_item_text_color="@android:color/holo_orange_dark"/>
 
+        <TextView
+            android:id="@+id/timeSeparator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fontFamily="@font/ibmplexsans_bold"
+            android:text=":"
+            android:textColor="@android:color/holo_orange_dark"
+            android:layout_marginBottom="13dp"
+            android:textSize="85sp"/>
+
         <com.github.florent37.singledateandtimepicker.widget.WheelMinutePicker
             android:id="@+id/minutesPicker"
             android:layout_width="wrap_content"
@@ -71,7 +79,7 @@
             app:wheel_atmospheric="true"
             app:wheel_item_align="center"
             app:wheel_item_typeface="@font/ibmplexsans_regular"
-            app:wheel_item_text_size="85sp"
+            app:wheel_item_text_size="50sp"
             app:wheel_selected_item_typeface="@font/ibmplexsans_bold"
             app:wheel_selected_item_text_size="85sp"
             app:wheel_selected_item_text_color="@android:color/holo_orange_dark"/>
