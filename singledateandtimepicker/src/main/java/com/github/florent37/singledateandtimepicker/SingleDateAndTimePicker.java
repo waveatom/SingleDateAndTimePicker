@@ -232,7 +232,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
 
     public void setDisplayYears(boolean displayYears) {
         this.displayYears = displayYears;
-        yearsPicker.setVisibility(displayYears ? VISIBLE : GONE);
+        yearsPicker.setVisibility(displayYears ? VISIBLE : INVISIBLE);
     }
 
     public void setDisplayMonths(boolean displayMonths) {
@@ -460,7 +460,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
     }
 
     public void setStepMinutes(int minutesStep) {
-        minutesPicker.setStepMinutes(minutesStep);
+        minutesPicker.setStepMinutes(1);
     }
 
     public void setHoursStep(int hoursStep) {
@@ -566,6 +566,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
         setDisplayYears(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_displayYears, displayYears));
         setDisplayDaysOfMonth(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_displayDaysOfMonth, displayDaysOfMonth));
         setDisplayMonthNumbers(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_displayMonthNumbers, monthPicker.displayMonthNumbers()));
+        setStepMinutes(a.getInteger(R.styleable.SingleDateAndTimePicker_picker_stepMinutes, 1));
 
         checkSettings();
         setMinYear();

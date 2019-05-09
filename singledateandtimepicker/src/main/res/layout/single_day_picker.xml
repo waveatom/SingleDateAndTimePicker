@@ -43,43 +43,55 @@
 
         <com.github.florent37.singledateandtimepicker.widget.WheelYearPicker
             android:id="@+id/yearPicker"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             app:wheel_atmospheric="true"
             app:wheel_item_align="right"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:visibility="gone"/>
+            android:visibility="invisible"/>
+
 
         <com.github.florent37.singledateandtimepicker.widget.WheelHourPicker
             android:id="@+id/hoursPicker"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center"
             app:wheel_atmospheric="true"
-            app:wheel_item_align="center" />
+            app:wheel_item_align="center"
+            app:wheel_item_typeface="@font/ibmplexsans_regular"
+            app:wheel_item_text_size="50sp"
+            app:wheel_selected_item_typeface="@font/ibmplexsans_bold"
+            app:wheel_selected_item_text_size="85sp"
+            app:wheel_selected_item_text_color="@android:color/holo_orange_dark"/>
 
         <com.github.florent37.singledateandtimepicker.widget.WheelMinutePicker
             android:id="@+id/minutesPicker"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:wheel_atmospheric="true"
-            app:wheel_item_align="center" />
+            app:wheel_item_align="center"
+            app:wheel_item_typeface="@font/ibmplexsans_regular"
+            app:wheel_item_text_size="85sp"
+            app:wheel_selected_item_typeface="@font/ibmplexsans_bold"
+            app:wheel_selected_item_text_size="85sp"
+            app:wheel_selected_item_text_color="@android:color/holo_orange_dark"/>
+
+
 
         <com.github.florent37.singledateandtimepicker.widget.WheelAmPmPicker
             android:id="@+id/amPmPicker"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="30dp"
+            android:layout_marginLeft="10dp"
             app:wheel_atmospheric="true"
             app:wheel_item_align="center"
             app:wheel_visible_item_count="2"
-            app:wheel_item_typeface="@font/ibmplexsans_regular"
-            app:wheel_item_text_size="20sp"
+            app:wheel_item_typeface="@font/ibmplexsans_bold"
+            app:wheel_item_text_size="30sp"
             app:wheel_selected_item_typeface="@font/ibmplexsans_bold"
             app:wheel_selected_item_text_size="30sp"
-            app:wheel_selected_item_text_color="@android:color/holo_orange_dark"/>
+            app:wheel_selected_item_text_color="@android:color/holo_orange_dark" />
+
 
     </LinearLayout>
 
