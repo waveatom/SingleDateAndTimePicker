@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF"
     android:gravity="center"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <Button
+        android:id="@+id/toggleEnabled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/toggleEnabled"
-        android:text="toggle enabled"
-        android:layout_marginBottom="100dp"/>
+        android:layout_marginBottom="100dp"
+        android:text="toggle enabled" />
 
-    <com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker
+    <!--<com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker-->
+    <!--android:id="@+id/single_day_picker"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="300dp"-->
+    <!--app:picker_curved="false"-->
+    <!--app:picker_cyclic="true"-->
+    <!--app:picker_mustBeOnFuture="false"-->
+    <!--app:picker_visibleItemCount="3"-->
+    <!--app:picker_displayDays="false"-->
+    <!--app:picker_selectorHeight="100dp"-->
+    <!--app:picker_selectorColor="@android:color/transparent"-->
+    <!--app:picker_stepMinutes="1"-->
+    <!--/>-->
+
+    <com.github.florent37.singledateandtimepicker.TimePicker
         android:id="@+id/single_day_picker"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        app:picker_curved="false"
-        app:picker_cyclic="true"
-        app:picker_mustBeOnFuture="false"
-        app:picker_visibleItemCount="3"
-        app:picker_displayDays="false"
-        app:picker_selectorHeight="100dp"
-        app:picker_selectorColor="@android:color/transparent"
-        app:picker_stepMinutes="1"
-        />
+        android:layout_height="300dp" />
+
 
 </LinearLayout>

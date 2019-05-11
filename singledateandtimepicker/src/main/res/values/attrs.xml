@@ -49,4 +49,5 @@
         <attr name="picker_displayMonthNumbers" format="boolean" />
         <attr name="picker_stepMinutes" format="integer" />
     </declare-styleable>
+
 </resources>

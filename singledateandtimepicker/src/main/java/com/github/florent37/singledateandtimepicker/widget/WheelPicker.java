@@ -873,10 +873,19 @@ public abstract class WheelPicker<V> extends View {
     }
 
     public void setItemTextSize(int size) {
-
         if (mItemTextSize != size) {
             mItemTextSize = size;
             paint.setTextSize(mItemTextSize);
+            computeTextSize();
+            requestLayout();
+            postInvalidate();
+        }
+    }
+
+    public void setSelectedItemTextSize(int size) {
+        if (mSelectedItemTextSize != size) {
+            mSelectedItemTextSize = size;
+            paint.setTextSize(mSelectedItemTextSize);
             computeTextSize();
             requestLayout();
             postInvalidate();
