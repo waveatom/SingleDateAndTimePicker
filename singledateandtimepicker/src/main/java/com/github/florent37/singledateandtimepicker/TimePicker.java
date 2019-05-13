@@ -1,10 +1,13 @@
 package com.github.florent37.singledateandtimepicker;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
+import android.widget.TextView;
 
 
 import com.github.florent37.singledateandtimepicker.widget.WheelAmPmPicker;
@@ -31,6 +34,8 @@ public class TimePicker extends ConstraintLayout {
     private final WheelHourPicker hoursPicker;
     @NonNull
     private final WheelAmPmPicker amPmPicker;
+    @NonNull
+    private final TextView timeSeparator;
 
     private List<WheelPicker> pickers = new ArrayList<>();
 
@@ -60,12 +65,15 @@ public class TimePicker extends ConstraintLayout {
         hoursPicker = findViewById(R.id.hoursPicker);
         minutesPicker = findViewById(R.id.minutesPicker);
         amPmPicker = findViewById(R.id.amPmPicker);
+        timeSeparator = findViewById(R.id.timeSeparator);
 
         pickers.addAll(Arrays.asList(
                 hoursPicker,
                 minutesPicker,
                 amPmPicker
         ));
+
+        minutesPicker.setStepMinutes(1);
 
         init(context, attrs);
     }
@@ -122,8 +130,10 @@ public class TimePicker extends ConstraintLayout {
     }
 
     public void setTextColor(int textColor) {
+        int aColor = getResources().getColor(textColor);
+        timeSeparator.setTextColor(aColor);
         for (WheelPicker picker : pickers) {
-            picker.setSelectedItemTextColor(textColor);
+            picker.setSelectedItemTextColor(aColor);
         }
     }
 

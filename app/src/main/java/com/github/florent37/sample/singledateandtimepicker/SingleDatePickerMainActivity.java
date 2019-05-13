@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.github.florent37.singledateandtimepicker.TimePicker;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class SingleDatePickerMainActivity extends AppCompatActivity {
@@ -21,6 +22,15 @@ public class SingleDatePickerMainActivity extends AppCompatActivity {
             @Override
             public void onDateChanged(String displayed, Date date) {
                 display(displayed);
+            }
+        });
+
+        findViewById(R.id.toggleColor).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //singleDateAndTimePicker.setTextColor(R.color.hot_purple);
+                //singleDateAndTimePicker.setIsAmPm(!singleDateAndTimePicker.isAmPm());
+                singleDateAndTimePicker.selectDate(Calendar.getInstance());
             }
         });
 
